@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Configurações | Medicina Fortaleza CMS Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="config.js"></script>
+    <style>
+        body { font-family: 'Outfit', sans-serif; background: #0F172A; color: white; }
+        .glass { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .input-field { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 12px; padding: 12px; width: 100%; outline: none; transition: all 0.3s; color: white; }
+        .input-field:focus { border-color: #F97316; background: rgba(255, 255, 255, 0.06); }
+        .tab-btn.active { background: #F97316; color: white; }
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.1); border-radius: 10px; }
+        .section-label { color: #F97316; font-size: 0.75rem; font-weight: 900; text-transform: uppercase; letter-spacing: 0.1em; display: block; margin-bottom: 0.5rem; }
+    </style>
+</head>
+<body class="min-h-screen flex items-center justify-center p-6 bg-slate-950">
+
+    <!-- LOGIN SCREEN -->
+    <div id="login-screen" class="glass p-12 rounded-[40px] shadow-2xl w-full max-w-md text-center">
+        <div class="mb-8">
+            <span class="text-2xl font-black uppercase tracking-tight">Cms</span>
+            <span class="text-xl font-bold tracking-[0.3em] text-[#F97316] uppercase block">Medicina</span>
+        </div>
+        <h2 class="text-2xl font-black mb-8">Acesso Administrativo</h2>
+        <input type="password" id="admin-pass" placeholder="Senha do Sistema" class="input-field text-center mb-6">
+        <button onclick="checkPass()" class="w-full bg-[#F97316] text-white py-4 rounded-xl font-black hover:scale-105 transition-all shadow-lg">Entrar no Painel</button>
+    </div>
+
+    <!-- ADMIN DASHBOARD -->
+    <div id="admin-dashboard" class="hidden w-full max-w-7xl animate-fade-in">
+        <div class="flex flex-col lg:flex-row gap-10">
+            <!-- Sidebar Navigation -->
+            <div class="w-full lg:w-80 space-y-4">
+                <div class="glass p-6 rounded-[32px] mb-4">
+                    <span class="text-xl font-black uppercase tracking-tight">Painel</span>
+                    <span class="text-xs font-bold text-[#F97316] block mb-6 uppercase tracking-widest opacity-60">Conteúdo Total</span>
+                    <nav class="space-y-1.5">
+                        <button onclick="showTab('brand')" class="tab-btn w-full text-left p-3.5 rounded-xl hover:bg-white/5 transition-all flex items-center gap-3 active">
+                            <i data-lucide="palette" size="18"></i> Marca & Identidade
+                        </button>
+                        <button onclick="showTab('hero')" class="tab-btn w-full text-left p-3.5 rounded-xl hover:bg-white/5 transition-all flex items-center gap-3">
+                            <i data-lucide="layout" size="18"></i> Hero / Home
+                        </button>
+                        <button onclick="showTab('sobre')" class="tab-btn w-full text-left p-3.5 rounded-xl hover:bg-white/5 transition-all flex items-center gap-3">
+                            <i data-lucide="users" size="18"></i> Sobre & Métricas
+                        </button>
+                        <button onclick="showTab('servicos')" class="tab-btn w-full text-left p-3.5 rounded-xl hover:bg-white/5 transition-all flex items-center gap-3">
+                            <i data-lucide="briefcase" size="18"></i> Serviços (Cards)
+                        </button>
+                        <button onclick="showTab('processo')" class="tab-btn w-full text-left p-3.5 rounded-xl hover:bg-white/5 transition-all flex items-center gap-3">
+                            <i data-lucide="repeat" size="18"></i> Processo / Passos
+                        </button>
+                        <button onclick="showTab('diff')" class="tab-btn w-full text-left p-3.5 rounded-xl hover:bg-white/5 transition-all flex items-center gap-3">
+                            <i data-lucide="award" size="18"></i> Diferenciais
+                        </button>
+                        <button onclick="showTab('contato')" class="tab-btn w-full text-left p-3.5 rounded-xl hover:bg-white/5 transition-all flex items-center gap-3">
+                            <i data-lucide="phone" size="18"></i> Contato & CTA
+                        </button>
+                    </nav>
+                </div>
+                
+                <button onclick="saveToBrowser()" id="save-btn" class="w-full bg-[#F97316] text-white py-6 rounded-[28px] font-black shadow-premium flex items-center justify-center gap-3 hover:scale-105 transition-all border-b-4 border-orange-700 active:border-b-0 active:translate-y-1">
+                    <i data-lucide="save" size="24"></i> SALVAR NO NAVEGADOR
+                </button>
+
+                <div class="glass p-6 rounded-[28px] space-y-3">
+                    <p class="text-[10px] uppercase font-black tracking-widest text-white/40 mb-2">Sincronização Física</p>
+                    <button onclick="downloadConfig()" class="w-full bg-[#22C55E] text-white py-4 rounded-xl font-black text-xs flex items-center justify-center gap-2 hover:bg-[#16a34a] transition-all uppercase tracking-widest">
+                        <i data-lucide="file-code" size="16"></i> Exportar config.js
+                    </button>
+                    <p class="text-[9px] leading-relaxed text-white/30 italic">Após exportar, mova o arquivo para a pasta principal do site.</p>
+                </div>
+            </div>
+
+            <!-- Main Content Area -->
+            <div class="flex-grow glass p-10 rounded-[48px] shadow-3xl overflow-y-auto max-h-[85vh] custom-scrollbar">
+                
+                <!-- TAB: BRAND -->
+                <div id="tab-brand" class="tab-content space-y-8">
+                    <h3 class="text-3xl font-black mb-8 border-b border-white/10 pb-4 text-[#F97316] uppercase tracking-tighter">Identidade Visual</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div><label class="section-label">Cor Primária (Blue)</label><input type="color" id="settings-primaryColor" class="w-full h-12 bg-white/5 border border-white/10 rounded-xl cursor-pointer"></div>
+                        <div><label class="section-label">Cor Destaque (Orange)</label><input type="color" id="settings-accentColor" class="w-full h-12 bg-white/5 border border-white/10 rounded-xl cursor-pointer"></div>
+                    </div>
+                    <div><label class="section-label">URL / Nome da Logo</label><input type="text" id="settings-logoUrl" class="input-field" placeholder="ex: medicina_logo.png"></div>
+                    <div><label class="section-label">Senha do Painel</label><input type="password" id="settings-password" class="input-field"></div>
+                </div>
+
+                <!-- TAB: HERO -->
+                <div id="tab-hero" class="tab-content hidden space-y-8">
+                    <h3 class="text-3xl font-black mb-8 border-b border-white/10 pb-4 text-[#F97316] uppercase tracking-tighter">Hero Section (Home)</h3>
+                    <div><label class="section-label">Tagline (Título pequeno)</label><input type="text" id="hero-tagline" class="input-field"></div>
+                    <div><label class="section-label">Título Grande (HTML permitido)</label><input type="text" id="hero-title" class="input-field"></div>
+                    <div><label class="section-label">Descrição Principal</label><textarea id="hero-description" class="input-field" rows="3"></textarea></div>
+                    <div><label class="section-label">Imagem de Fundo Hero (Path)</label><input type="text" id="hero-bgImageUrl" class="input-field"></div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div><label class="section-label">Texto do Botão CTA</label><input type="text" id="hero-ctaText" class="input-field"></div>
+                        <div><label class="section-label">Link do Botão (WhatsApp)</label><input type="text" id="hero-ctaLink" class="input-field"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6 p-6 bg-white/5 rounded-3xl">
+                        <div><label class="section-label">Métrica 1 Valor</label><input type="text" id="hero-goal1Title" class="input-field"></div>
+                        <div><label class="section-label">Métrica 1 Selo</label><input type="text" id="hero-goal1Label" class="input-field"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6 p-6 bg-white/5 rounded-3xl">
+                        <div><label class="section-label">Métrica 2 Valor</label><input type="text" id="hero-goal2Title" class="input-field"></div>
+                        <div><label class="section-label">Métrica 2 Selo</label><input type="text" id="hero-goal2Label" class="input-field"></div>
+                    </div>
+                </div>
+
+                <!-- TAB: SOBRE -->
+                <div id="tab-sobre" class="tab-content hidden space-y-8">
+                    <h3 class="text-3xl font-black mb-8 border-b border-white/10 pb-4 text-[#F97316] uppercase tracking-tighter">Sobre a Clínica</h3>
+                    <div><label class="section-label">Selo / Badge Circular</label><input type="text" id="about-badgeTitle" class="input-field"></div>
+                    <div><label class="section-label">Tagline da Seção</label><input type="text" id="about-tagline" class="input-field"></div>
+                    <div><label class="section-label">Título Sobre (HTML permitido)</label><input type="text" id="about-title" class="input-field"></div>
+                    <div><label class="section-label">Parágrafo 1</label><textarea id="about-p1" class="input-field" rows="3"></textarea></div>
+                    <div><label class="section-label">Parágrafo 2</label><textarea id="about-p2" class="input-field" rows="3"></textarea></div>
+                    <div><label class="section-label">Lista Item 1</label><input type="text" id="about-item1" class="input-field"></div>
+                    <div><label class="section-label">Lista Item 2</label><input type="text" id="about-item2" class="input-field"></div>
+                    <div><label class="section-label">Imagem da Clínica (Sobre)</label><input type="text" id="about-bgImageUrl" class="input-field"></div>
+                </div>
+
+                <!-- TAB: SERVIÇOS -->
+                <div id="tab-servicos" class="tab-content hidden space-y-10">
+                    <h3 class="text-3xl font-black mb-8 border-b border-white/10 pb-4 text-[#F97316] uppercase tracking-tighter">Serviços & Soluções</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div><label class="section-label">Título da Seção</label><input type="text" id="services-title" class="input-field"></div>
+                        <div><label class="section-label">Subtítulo Descido</label><input type="text" id="services-subtitle" class="input-field"></div>
+                    </div>
+                    <div id="services-editor" class="space-y-6 pt-6">
+                        <!-- Dynamic via JS -->
+                    </div>
+                </div>
+
+                <!-- TAB: PROCESSO -->
+                <div id="tab-processo" class="tab-content hidden space-y-10">
+                    <h3 class="text-3xl font-black mb-8 border-b border-white/10 pb-4 text-[#F97316] uppercase tracking-tighter">Processo de Trabalho</h3>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div><label class="section-label">Tagline</label><input type="text" id="process-tagline" class="input-field"></div>
+                        <div><label class="section-label">Título Processo</label><input type="text" id="process-title" class="input-field"></div>
+                    </div>
+                    <div id="process-editor" class="space-y-6 pt-6">
+                        <!-- Dynamic via JS -->
+                    </div>
+                </div>
+
+                <!-- TAB: DIFFERENTIALS -->
+                <div id="tab-diff" class="tab-content hidden space-y-8">
+                    <h3 class="text-3xl font-black mb-8 border-b border-white/10 pb-4 text-[#F97316] uppercase tracking-tighter">Diferenciais Técnicos</h3>
+                    <div><label class="section-label">Título Grande</label><input type="text" id="diff-title" class="input-field"></div>
+                    <div class="grid grid-cols-2 gap-6 p-6 bg-white/5 rounded-3xl">
+                        <div><label class="section-label">Diff 1 Título</label><input type="text" id="diff-item1Title" class="input-field"></div>
+                        <div><label class="section-label">Diff 1 Descrição</label><input type="text" id="diff-item1Desc" class="input-field"></div>
+                    </div>
+                    <div class="grid grid-cols-2 gap-6 p-6 bg-white/5 rounded-3xl">
+                        <div><label class="section-label">Diff 2 Título</label><input type="text" id="diff-item2Title" class="input-field"></div>
+                        <div><label class="section-label">Diff 2 Descrição</label><input type="text" id="diff-item2Desc" class="input-field"></div>
+                    </div>
+                    <div><label class="section-label">Frase de Impacto (Quote)</label><textarea id="diff-quote" class="input-field" rows="2"></textarea></div>
+                    <div><label class="section-label">Imagem de Apoio (Fundo)</label><input type="text" id="diff-bgImageUrl" class="input-field"></div>
+                </div>
+
+                <!-- TAB: CONTATO -->
+                <div id="tab-contato" class="tab-content hidden space-y-8">
+                    <h3 class="text-3xl font-black mb-8 border-b border-white/10 pb-4 text-[#F97316] uppercase tracking-tighter">Contato & CTA Final</h3>
+                    <div><label class="section-label">Título Contato</label><input type="text" id="contact-title" class="input-field"></div>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div><label class="section-label">WhatsApp (Exibição)</label><input type="text" id="contact-whatsapp" class="input-field"></div>
+                        <div><label class="section-label">E-mail</label><input type="text" id="contact-email" class="input-field"></div>
+                    </div>
+                    <div><label class="section-label">Título do Formulário</label><input type="text" id="contact-formTitle" class="input-field"></div>
+                    <div><label class="section-label">Frase de Suporte "Humanizada"</label><input type="text" id="contact-supportText" class="input-field"></div>
+                    
+                    <h4 class="text-xl font-black mt-16 text-[#F97316] uppercase tracking-widest border-t border-white/10 pt-10">Fechamento do Site (CTA Final)</h4>
+                    <div><label class="section-label">Título Última Chamada</label><input type="text" id="cta-title" class="input-field"></div>
+                    <div><label class="section-label">Subtítulo de Fechamento</label><textarea id="cta-description" class="input-field" rows="2"></textarea></div>
+                    <div><label class="section-label">Texto do Botão Final</label><input type="text" id="cta-buttonText" class="input-field"></div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Init Lucide
+        lucide.createIcons();
+
+        // Serverless Persistence
+        const saved = localStorage.getItem('SITE_CONFIG');
+        if (saved) {
+            Object.assign(SITE_CONFIG, JSON.parse(saved));
+        }
+
+        function checkPass() {
+            const pass = document.getElementById('admin-pass').value;
+            if (pass === SITE_CONFIG.settings.password) {
+                document.getElementById('login-screen').classList.add('hidden');
+                document.getElementById('admin-dashboard').classList.remove('hidden');
+                loadFields();
+            } else {
+                alert('Acesso negado!');
+            }
+        }
+
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(el => el.classList.add('hidden'));
+            document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
+            document.getElementById('tab-' + tabId).classList.remove('hidden');
+            event.currentTarget.classList.add('active');
+        }
+
+        function loadFields() {
+            // BRAND
+            document.getElementById('settings-primaryColor').value = SITE_CONFIG.settings.primaryColor;
+            document.getElementById('settings-accentColor').value = SITE_CONFIG.settings.accentColor;
+            document.getElementById('settings-logoUrl').value = SITE_CONFIG.settings.logoUrl;
+            document.getElementById('settings-password').value = SITE_CONFIG.settings.password;
+
+            // HERO
+            document.getElementById('hero-tagline').value = SITE_CONFIG.hero.tagline;
+            document.getElementById('hero-title').value = SITE_CONFIG.hero.title;
+            document.getElementById('hero-description').value = SITE_CONFIG.hero.description;
+            document.getElementById('hero-bgImageUrl').value = SITE_CONFIG.hero.bgImageUrl;
+            document.getElementById('hero-ctaText').value = SITE_CONFIG.hero.ctaText;
+            document.getElementById('hero-ctaLink').value = SITE_CONFIG.hero.ctaLink;
+            document.getElementById('hero-goal1Title').value = SITE_CONFIG.hero.goal1Title;
+            document.getElementById('hero-goal1Label').value = SITE_CONFIG.hero.goal1Label;
+            document.getElementById('hero-goal2Title').value = SITE_CONFIG.hero.goal2Title;
+            document.getElementById('hero-goal2Label').value = SITE_CONFIG.hero.goal2Label;
+
+            // SOBRE
+            document.getElementById('about-badgeTitle').value = SITE_CONFIG.about.badgeTitle;
+            document.getElementById('about-tagline').value = SITE_CONFIG.about.tagline;
+            document.getElementById('about-title').value = SITE_CONFIG.about.title;
+            document.getElementById('about-p1').value = SITE_CONFIG.about.p1;
+            document.getElementById('about-p2').value = SITE_CONFIG.about.p2;
+            document.getElementById('about-item1').value = SITE_CONFIG.about.item1;
+            document.getElementById('about-item2').value = SITE_CONFIG.about.item2;
+            document.getElementById('about-bgImageUrl').value = SITE_CONFIG.about.bgImageUrl;
+
+            // SERVIÇOS (Array)
+            document.getElementById('services-title').value = SITE_CONFIG.services.title;
+            document.getElementById('services-subtitle').value = SITE_CONFIG.services.subtitle;
+            const se = document.getElementById('services-editor');
+            se.innerHTML = SITE_CONFIG.services.items.map((item, i) => `
+                <div class="glass p-6 rounded-3xl border-l-4 border-[#F97316]">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div><label class="section-label">Título do Card ${i+1}</label><input type="text" id="service-t-${i}" value="${item.title}" class="input-field"></div>
+                        <div><label class="section-label">Ícone Lucide (ex: car, user)</label><input type="text" id="service-i-${i}" value="${item.icon}" class="input-field font-mono"></div>
+                    </div>
+                    <div><label class="section-label">Descrição curta</label><textarea id="service-d-${i}" class="input-field" rows="2">${item.description}</textarea></div>
+                </div>
+            `).join('');
+
+            // PROCESSO (Array)
+            document.getElementById('process-tagline').value = SITE_CONFIG.process.tagline;
+            document.getElementById('process-title').value = SITE_CONFIG.process.title;
+            const pe = document.getElementById('process-editor');
+            pe.innerHTML = SITE_CONFIG.process.items.map((item, i) => `
+                <div class="glass p-6 rounded-3xl border-l-4 border-accent-blue/30">
+                    <div class="grid grid-cols-2 gap-4 mb-4">
+                        <div><label class="section-label">Passo ${i+1} - Título</label><input type="text" id="process-t-${i}" value="${item.title}" class="input-field"></div>
+                        <div><label class="section-label">Passo ${i+1} - Ícone</label><input type="text" id="process-i-${i}" value="${item.icon}" class="input-field font-mono"></div>
+                    </div>
+                    <div><label class="section-label">Explicação</label><input type="text" id="process-d-${i}" value="${item.desc}" class="input-field"></div>
+                </div>
+            `).join('');
+
+            // DIFF
+            document.getElementById('diff-title').value = SITE_CONFIG.differentials.title;
+            document.getElementById('diff-item1Title').value = SITE_CONFIG.differentials.item1Title;
+            document.getElementById('diff-item1Desc').value = SITE_CONFIG.differentials.item1Desc;
+            document.getElementById('diff-item2Title').value = SITE_CONFIG.differentials.item2Title;
+            document.getElementById('diff-item2Desc').value = SITE_CONFIG.differentials.item2Desc;
+            document.getElementById('diff-quote').value = SITE_CONFIG.differentials.quote;
+            document.getElementById('diff-bgImageUrl').value = SITE_CONFIG.differentials.bgImageUrl;
+
+            // CONTATO
+            document.getElementById('contact-title').value = SITE_CONFIG.contact.title;
+            document.getElementById('contact-whatsapp').value = SITE_CONFIG.contact.whatsapp;
+            document.getElementById('contact-email').value = SITE_CONFIG.contact.email;
+            document.getElementById('contact-formTitle').value = SITE_CONFIG.contact.formTitle;
+            document.getElementById('contact-supportText').value = SITE_CONFIG.contact.supportText;
+            document.getElementById('cta-title').value = SITE_CONFIG.ctaFinal.title;
+            document.getElementById('cta-description').value = SITE_CONFIG.ctaFinal.description;
+            document.getElementById('cta-buttonText').value = SITE_CONFIG.ctaFinal.buttonText;
+        }
+
+        function collectData() {
+            // BRAND
+            SITE_CONFIG.settings.primaryColor = document.getElementById('settings-primaryColor').value;
+            SITE_CONFIG.settings.accentColor = document.getElementById('settings-accentColor').value;
+            SITE_CONFIG.settings.logoUrl = document.getElementById('settings-logoUrl').value;
+            SITE_CONFIG.settings.password = document.getElementById('settings-password').value;
+
+            // HERO
+            SITE_CONFIG.hero.tagline = document.getElementById('hero-tagline').value;
+            SITE_CONFIG.hero.title = document.getElementById('hero-title').value;
+            SITE_CONFIG.hero.description = document.getElementById('hero-description').value;
+            SITE_CONFIG.hero.bgImageUrl = document.getElementById('hero-bgImageUrl').value;
+            SITE_CONFIG.hero.ctaText = document.getElementById('hero-ctaText').value;
+            SITE_CONFIG.hero.ctaLink = document.getElementById('hero-ctaLink').value;
+            SITE_CONFIG.hero.goal1Title = document.getElementById('hero-goal1Title').value;
+            SITE_CONFIG.hero.goal1Label = document.getElementById('hero-goal1Label').value;
+            SITE_CONFIG.hero.goal2Title = document.getElementById('hero-goal2Title').value;
+            SITE_CONFIG.hero.goal2Label = document.getElementById('hero-goal2Label').value;
+
+            // SOBRE
+            SITE_CONFIG.about.badgeTitle = document.getElementById('about-badgeTitle').value;
+            SITE_CONFIG.about.tagline = document.getElementById('about-tagline').value;
+            SITE_CONFIG.about.title = document.getElementById('about-title').value;
+            SITE_CONFIG.about.p1 = document.getElementById('about-p1').value;
+            SITE_CONFIG.about.p2 = document.getElementById('about-p2').value;
+            SITE_CONFIG.about.item1 = document.getElementById('about-item1').value;
+            SITE_CONFIG.about.item2 = document.getElementById('about-item2').value;
+            SITE_CONFIG.about.bgImageUrl = document.getElementById('about-bgImageUrl').value;
+
+            // SERVIÇOS
+            SITE_CONFIG.services.title = document.getElementById('services-title').value;
+            SITE_CONFIG.services.subtitle = document.getElementById('services-subtitle').value;
+            SITE_CONFIG.services.items.forEach((item, i) => {
+                item.title = document.getElementById(`service-t-${i}`).value;
+                item.description = document.getElementById(`service-d-${i}`).value;
+                item.icon = document.getElementById(`service-i-${i}`).value;
+            });
+
+            // PROCESSO
+            SITE_CONFIG.process.tagline = document.getElementById('process-tagline').value;
+            SITE_CONFIG.process.title = document.getElementById('process-title').value;
+            SITE_CONFIG.process.items.forEach((item, i) => {
+                item.title = document.getElementById(`process-t-${i}`).value;
+                item.desc = document.getElementById(`process-d-${i}`).value;
+                item.icon = document.getElementById(`process-i-${i}`).value;
+            });
+
+            // DIFF
+            SITE_CONFIG.differentials.title = document.getElementById('diff-title').value;
+            SITE_CONFIG.differentials.item1Title = document.getElementById('diff-item1Title').value;
+            SITE_CONFIG.differentials.item1Desc = document.getElementById('diff-item1Desc').value;
+            SITE_CONFIG.differentials.item2Title = document.getElementById('diff-item2Title').value;
+            SITE_CONFIG.differentials.item2Desc = document.getElementById('diff-item2Desc').value;
+            SITE_CONFIG.differentials.quote = document.getElementById('diff-quote').value;
+            SITE_CONFIG.differentials.bgImageUrl = document.getElementById('diff-bgImageUrl').value;
+
+            // CONTATO
+            SITE_CONFIG.contact.title = document.getElementById('contact-title').value;
+            SITE_CONFIG.contact.whatsapp = document.getElementById('contact-whatsapp').value;
+            SITE_CONFIG.contact.email = document.getElementById('contact-email').value;
+            SITE_CONFIG.contact.formTitle = document.getElementById('contact-formTitle').value;
+            SITE_CONFIG.contact.supportText = document.getElementById('contact-supportText').value;
+            SITE_CONFIG.ctaFinal.title = document.getElementById('cta-title').value;
+            SITE_CONFIG.ctaFinal.description = document.getElementById('cta-description').value;
+            SITE_CONFIG.ctaFinal.buttonText = document.getElementById('cta-buttonText').value;
+        }
+
+        function saveToBrowser() {
+            collectData();
+            localStorage.setItem('SITE_CONFIG', JSON.stringify(SITE_CONFIG));
+            
+            const btn = document.getElementById('save-btn');
+            const oldHtml = btn.innerHTML;
+            btn.innerHTML = '<i data-lucide="check" size="24"></i> SALVO NO NAVEGADOR!';
+            btn.classList.add('bg-green-600');
+            lucide.createIcons();
+
+            setTimeout(() => {
+                btn.innerHTML = oldHtml;
+                btn.classList.remove('bg-green-600');
+                lucide.createIcons();
+            }, 3000);
+        }
+
+        function downloadConfig() {
+            collectData();
+            const configJs = `const SITE_CONFIG = ${JSON.stringify(SITE_CONFIG, null, 4)};\n\nif (typeof module !== 'undefined' && module.exports) {\n    module.exports = SITE_CONFIG;\n}`;
+            
+            const blob = new Blob([configJs], { type: 'application/javascript' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'config.js';
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

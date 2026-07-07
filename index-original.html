@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="pt-BR" class="scroll-smooth">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicina Fortaleza | Laudos Médicos e Perícias</title>
+    <!-- SEO -->
+    <meta name="description"
+        content="Clínica especializada em laudos médicos e perícias técnicas em Fortaleza. Prova de vida, DETRAN, PCD e avaliações previdenciárias.">
+
+    <!-- Arquivo de Configuração Fácil -->
+    <script src="./config.js"></script>
+
+    <!-- Injeta Fontes e CSS Global Dinamicamente -->
+    <script>
+        const fontName = SITE_CONFIG.settings.fontFamily.replace(/ /g, '+');
+        document.write(`<link rel="preconnect" href="https://fonts.googleapis.com">`);
+        document.write(`<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>`);
+        document.write(`<link href="https://fonts.googleapis.com/css2?family=${fontName}:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">`);
+
+        document.write(`
+            <style>
+                body {
+                    font-family: '${SITE_CONFIG.settings.fontFamily}', sans-serif;
+                }
+                .premium-gradient {
+                    background: linear-gradient(135deg, ${SITE_CONFIG.settings.primaryColor} 0%, ${SITE_CONFIG.settings.secondaryColor} 100%);
+                }
+                .glass {
+                    background: ${SITE_CONFIG.settings.primaryColor}E6;
+                    backdrop-filter: blur(20px);
+                }
+                .custom-scrollbar::-webkit-scrollbar {
+                    width: 8px;
+                }
+                .custom-scrollbar::-webkit-scrollbar-track {
+                    background: #f1f1f1;
+                }
+                .custom-scrollbar::-webkit-scrollbar-thumb {
+                    background: ${SITE_CONFIG.settings.primaryColor};
+                    border-radius: 10px;
+                }
+                [data-aos] {
+                    pointer-events: none;
+                }
+                .aos-animate {
+                    pointer-events: auto;
+                }
+            </style>
+        `);
+    </script>
+
+    <!-- Tailwind CSS SDK -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- AOS Library (Animations) -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+
+    <!-- Configuração Dinâmica do Tailwind -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'brand-blue': SITE_CONFIG.settings.primaryColor,
+                        'brand-blue-light': SITE_CONFIG.settings.secondaryColor,
+                        'accent-blue': SITE_CONFIG.settings.accentColor,
+                        'brand-orange': SITE_CONFIG.settings.buttonColor,
+                        'brand-bronze': SITE_CONFIG.settings.buttonHoverColor,
+                        'brand-cream': SITE_CONFIG.settings.lightBgColor
+                    },
+                    fontFamily: {
+                        sans: [SITE_CONFIG.settings.fontFamily, 'sans-serif'],
+                    },
+                    borderRadius: {
+                        '4xl': '2rem',
+                        '5xl': '3rem',
+                        '6xl': '4rem',
+                    },
+                    boxShadow: {
+                        '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+
+<body class="bg-white text-brand-blue selection:bg-brand-orange selection:text-white overflow-x-hidden">
+
+    <!-- NAVBAR -->
+    <nav id="navbar" class="fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-5">
+        <div class="max-w-7xl mx-auto flex items-center justify-between">
+            <a href="#inicio" class="flex flex-col">
+                <span class="text-xl font-black tracking-tight text-white uppercase leading-none">Medicina</span>
+                <span
+                    class="text-lg font-bold tracking-[0.3em] text-brand-orange uppercase leading-none">Fortaleza</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <div class="hidden lg:flex items-center gap-10">
+                <a href="#sobre"
+                    class="text-xs font-black text-white/80 uppercase tracking-widest hover:text-brand-orange transition-all">Sobre</a>
+                <a href="#servicos"
+                    class="text-xs font-black text-white/80 uppercase tracking-widest hover:text-brand-orange transition-all">Serviços</a>
+                <a href="#diferenciais"
+                    class="text-xs font-black text-white/80 uppercase tracking-widest hover:text-brand-orange transition-all">Diferenciais</a>
+                <a href="#faq"
+                    class="text-xs font-black text-white/80 uppercase tracking-widest hover:text-brand-orange transition-all">FAQ</a>
+                <a href="#contato"
+                    class="text-xs font-black text-white/80 uppercase tracking-widest hover:text-brand-orange transition-all font-bold">Contato</a>
+                <a href="https://wa.me/5585999108515" target="_blank"
+                    class="bg-brand-orange text-white px-6 py-3 rounded-xl font-black text-xs uppercase tracking-widest transition-all hover:scale-105 hover:bg-brand-bronze shadow-lg">Agendar</a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <button id="menu-toggle" class="lg:hidden text-white p-2">
+                <i data-lucide="menu" size="32"></i>
+            </button>
+        </div>
+    </nav>
+
+    <!-- MOBILE MENU -->
+    <div id="mobile-menu"
+        class="fixed inset-0 bg-brand-blue z-[60] flex flex-col items-center justify-center gap-10 text-center transition-all duration-500 opacity-0 pointer-events-none translate-x-full">
+        <button id="menu-close" class="absolute top-8 right-8 text-white">
+            <i data-lucide="x" size="40"></i>
+        </button>
+        <a href="#inicio"
+            class="text-3xl font-black text-white uppercase tracking-widest hover:text-brand-orange">Início</a>
+        <a href="#sobre"
+            class="text-3xl font-black text-white uppercase tracking-widest hover:text-brand-orange">Sobre</a>
+        <a href="#servicos"
+            class="text-3xl font-black text-white uppercase tracking-widest hover:text-brand-orange">Serviços</a>
+        <a href="#faq" class="text-3xl font-black text-white uppercase tracking-widest hover:text-brand-orange">FAQ</a>
+        <a href="#contato"
+            class="text-3xl font-black text-white uppercase tracking-widest hover:text-brand-orange">Contato</a>
+        <a href="https://wa.me/5585999108515"
+            class="bg-brand-orange text-white px-8 py-6 rounded-2xl font-black text-xl mt-8 shadow-2xl">WhatsApp</a>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <main>
+        <!-- HERO SECTION -->
+        <section id="inicio" class="relative min-h-[95vh] flex items-center overflow-hidden bg-brand-blue pt-20">
+            <div class="absolute inset-0 z-0">
+                <div
+                    class="absolute top-0 right-0 w-full h-full bg-[radial-gradient(circle_at_70%_30%,rgba(37,99,235,0.1),transparent_50%)]">
+                </div>
+                <div
+                    class="absolute bottom-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_80%,rgba(180,83,9,0.05),transparent_50%)]">
+                </div>
+            </div>
+
+            <div
+                class="max-w-7xl mx-auto px-6 w-full grid grid-cols-1 lg:grid-cols-2 gap-20 items-center relative z-10">
+                <div data-aos="fade-right" data-aos-duration="1000" class="flex flex-col gap-10">
+                    <div
+                        class="inline-flex items-center gap-3 bg-white/5 border border-white/10 text-accent-blue px-6 py-2.5 rounded-full w-fit">
+                        <div class="w-2 h-2 rounded-full bg-brand-orange animate-pulse"></div>
+                        <span class="text-xs font-bold uppercase tracking-[0.3em]">CLÍNICA ESPECIALIZADA EM LAUDOS E
+                            PERÍCIAS MÉDICAS EM FORTALEZA</span>
+                    </div>
+
+                    <h1 class="text-6xl md:text-8xl font-black text-white leading-[0.95] tracking-tighter">
+                        Laudo PCD, <br>
+                        <span class="text-brand-orange">garanta seu direito</span>
+                    </h1>
+
+                    <p class="text-xl text-slate-400 leading-relaxed max-w-xl">
+                        Laudos médicos confiáveis para Prova de Vida - Lucidez, DETRAN - PCD, elaborados com rigor
+                        técnico e
+                        dentro das
+                        exigências legais.
+                    </p>
+
+                    <div class="flex flex-wrap gap-6 items-center pt-4">
+                        <a href="https://wa.me/5585999108515" target="_blank"
+                            class="px-10 py-6 bg-brand-orange text-white rounded-2xl font-black text-xl shadow-2xl hover:scale-105 hover:bg-brand-bronze transition-all flex items-center gap-4">
+                            <i data-lucide="phone" size="28"></i>
+                            Agendar Agora
+                        </a>
+                        <div class="flex flex-col justify-center border-l-2 border-white/10 pl-6 text-white">
+                            <p class="font-bold text-lg leading-none">Prova de Vida & PCD</p>
+                            <p class="text-slate-500 text-sm mt-1 uppercase tracking-widest font-semibold italic">
+                                Emissão Imediata*</p>
+                        </div>
+                    </div>
+
+                    <div class="pt-10 flex gap-12 border-t border-white/5">
+                        <div class="flex flex-col gap-1">
+                            <span class="text-3xl font-black text-white">100%</span>
+                            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">ADEQUAÇÃO
+                                LEGAL</span>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <span class="text-3xl font-black text-white">24h</span>
+                            <span
+                                class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">PRÉ-AVALIAÇÃO</span>
+                        </div>
+                        <div class="flex flex-col gap-1">
+                            <span class="text-3xl font-black text-white">+1k</span>
+                            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-widest">CLIENTES
+                                ATENDIDOS</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="zoom-in" data-aos-duration="1200" class="relative hidden lg:block">
+                    <div
+                        class="relative z-10 rounded-[60px] overflow-hidden shadow-3xl border-2 border-white/10 rotate-2 hover:rotate-0 transition-transform duration-700">
+                        <div class="aspect-[4/5] bg-brand-blue-light flex items-center justify-center relative group">
+                            <div class="absolute inset-0 bg-gradient-to-tr from-brand-blue to-transparent opacity-60">
+                            </div>
+                            <span
+                                class="text-white/10 font-black text-4xl uppercase tracking-[0.2em] transform -rotate-45 italic">Medicina
+                                Fortaleza</span>
+                        </div>
+                    </div>
+                    <div class="absolute -top-16 -right-16 w-64 h-64 bg-accent-blue/10 rounded-full blur-[80px] -z-10">
+                    </div>
+                    <div
+                        class="absolute -bottom-16 -left-16 w-64 h-64 bg-brand-orange/10 rounded-full blur-[80px] -z-10">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="sobre" class="py-32 px-6 bg-brand-blue text-white overflow-hidden relative">
+            <div class="absolute top-0 right-0 w-1/3 h-full bg-accent-blue/5 skew-x-12 translate-x-1/2"></div>
+
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
+                <div data-aos="fade-right" class="relative">
+                    <div
+                        class="aspect-[4/5] bg-brand-blue-light rounded-[60px] overflow-hidden shadow-2xl relative z-10 border border-white/10 group">
+                        <div
+                            class="w-full h-full bg-gradient-to-t from-brand-blue to-transparent opacity-60 absolute inset-0 z-10">
+                        </div>
+                        <div
+                            class="absolute inset-0 flex items-center justify-center p-12 text-center text-white/20 font-bold uppercase tracking-[0.2em]">
+                            Foto da Clínica</div>
+                    </div>
+                    <div
+                        class="absolute -bottom-10 -right-10 bg-brand-orange p-8 rounded-3xl shadow-2xl z-20 max-w-[280px] border border-white/10">
+                        <div class="flex gap-4 items-center">
+                            <i data-lucide="award" size="40"></i>
+                            <p class="text-white font-bold leading-tight">Referência em Perícias Médicas no Ceará</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left" class="space-y-10">
+                    <div>
+                        <h2 class="text-brand-orange font-bold uppercase tracking-[0.3em] text-sm mb-4">Sobre Nós</h2>
+                        <h3 class="text-4xl md:text-6xl font-black leading-tight">Excelência Médica <br> <span
+                                class="text-accent-blue">em Perícias.</span></h3>
+                    </div>
+
+                    <div class="space-y-6 text-slate-300 text-lg leading-relaxed">
+                        <p>A Medicina Fortaleza é especializada na elaboração de Laudos Médicos e Periciais com
+                            qualidade técnica e rigor no cumprimento das exigências legais.</p>
+                        <p>Elaboramos documentos com objetividade e clareza, favorecendo sua adequada aceitação nos
+                            processos, sempre em conformidade com critérios éticos e normativos.
+                        </p>
+                    </div>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
+                        <div class="flex items-center gap-4 text-white font-semibold">
+                            <div class="w-6 h-6 rounded-full bg-brand-orange flex items-center justify-center"><i
+                                    data-lucide="check" size="14"></i></div>
+                            Rigor Técnico-Científico
+                        </div>
+                        <div class="flex items-center gap-4 text-white font-semibold">
+                            <div class="w-6 h-6 rounded-full bg-brand-orange flex items-center justify-center"><i
+                                    data-lucide="check" size="14"></i></div>
+                            Direitos Assegurados
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SERVICES GRID -->
+        <section id="servicos" class="py-32 bg-brand-cream">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-12 text-left">
+                    <div class="max-w-2xl" data-aos="fade-up">
+                        <h2 class="text-brand-orange font-bold uppercase tracking-[0.3em] text-sm mb-4">Nossa
+                            Especialidade</h2>
+                        <p class="text-4xl md:text-6xl font-black text-brand-blue leading-tight tracking-tighter">
+                            Atestados médicos elaborados para atender às <span class="text-accent-blue italic">
+                                exigências processuais</span>
+                        </p>
+                    </div>
+                    <p class="text-slate-500 max-w-sm text-lg font-medium" data-aos="fade-up" data-aos-delay="200">
+                        Evite retrabalhos. Solicite seu laudo conosco e tenha mais segurança no seu processo.</p>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <!-- Service 1 -->
+                    <div class="relative p-12 rounded-[48px] bg-white border border-slate-100 shadow-sm hover:shadow-3xl hover:-translate-y-3 transition-all group flex flex-col h-full overflow-hidden"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <div
+                            class="w-20 h-20 rounded-3xl flex items-center justify-center mb-10 bg-brand-blue text-white shadow-xl transition-transform group-hover:scale-110">
+                            <i data-lucide="user-check" size="36"></i>
+                        </div>
+                        <h3
+                            class="text-2xl font-bold text-brand-blue mb-6 group-hover:text-accent-blue transition-colors">
+                            Perícia Médica-Especial (DETRAN)</h3>
+                        <p class="text-slate-600 text-base leading-relaxed mb-10 flex-grow">Avaliação médica voltada à
+                            análise das condições de saúde relacionadas à condução veicular, com identificação de
+                            possíveis restrições ou necessidade de adaptações para dirigir.</p>
+                        <a href="#contato"
+                            class="inline-flex items-center gap-3 text-brand-orange font-black text-sm tracking-widest uppercase group/btn">Detalhes
+                            <i data-lucide="arrow-right" size="20"></i></a>
+                        <div
+                            class="absolute top-10 right-10 text-8xl font-black text-slate-100 opacity-20 group-hover:text-brand-blue/5">
+                            01</div>
+                    </div>
+                    <!-- Service 2 -->
+                    <div class="relative p-12 rounded-[48px] bg-white border border-slate-100 shadow-sm hover:shadow-3xl hover:-translate-y-3 transition-all group flex flex-col h-full overflow-hidden"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <div
+                            class="w-20 h-20 rounded-3xl flex items-center justify-center mb-10 bg-brand-blue text-white shadow-xl group-hover:scale-110">
+                            <i data-lucide="car" size="36"></i>
+                        </div>
+                        <h3
+                            class="text-2xl font-bold text-brand-blue mb-6 group-hover:text-accent-blue transition-colors">
+                            Laudos para Isenção PCD (IPI, ICMS e IPVA)</h3>
+                        <p class="text-slate-600 text-base mb-10 flex-grow">Emissão de laudos médicos para pessoas com
+                            deficiência física, auditiva, visual ou transtornos como o TEA, conforme as exigências dos
+                            processos de isenção.</p>
+                        <a href="#contato"
+                            class="inline-flex items-center gap-3 text-brand-orange font-black text-sm tracking-widest uppercase group/btn">Detalhes
+                            <i data-lucide="arrow-right" size="20"></i></a>
+                        <div
+                            class="absolute top-10 right-10 text-8xl font-black text-slate-100 opacity-20 group-hover:text-brand-blue/5">
+                            02</div>
+                    </div>
+                    <!-- Service 3 -->
+                    <div class="relative p-12 rounded-[48px] bg-white border border-slate-100 shadow-sm hover:shadow-3xl hover:-translate-y-3 transition-all group flex flex-col h-full overflow-hidden"
+                        data-aos="fade-up" data-aos-delay="300">
+                        <div
+                            class="w-20 h-20 rounded-3xl flex items-center justify-center mb-10 bg-brand-blue text-white shadow-xl group-hover:scale-110">
+                            <i data-lucide="file-text" size="36"></i>
+                        </div>
+                        <h3
+                            class="text-2xl font-bold text-brand-blue mb-6 group-hover:text-accent-blue transition-colors">
+                            Prova de Vida - Lucidez (Jurídicos)</h3>
+                        <p class="text-slate-600 text-base mb-10 flex-grow">Atendimento a pacientes com dificuldade de
+                            locomoção ou impossibilitados de comparecimento presencial para fins administrativos, legais
+                            ou civis, com avaliação clínica e descrição do estado de consciência, orientação e
+                            capacidade de comunicação.</p>
+                        <a href="#contato"
+                            class="inline-flex items-center gap-3 text-brand-orange font-black text-sm tracking-widest uppercase group/btn">Detalhes
+                            <i data-lucide="arrow-right" size="20"></i></a>
+                        <div
+                            class="absolute top-10 right-10 text-8xl font-black text-slate-100 opacity-20 group-hover:text-brand-blue/5">
+                            03</div>
+                    </div>
+                    <!-- Service 4 -->
+                    <div class="relative p-12 rounded-[48px] bg-white border border-slate-100 shadow-sm hover:shadow-3xl hover:-translate-y-3 transition-all group flex flex-col h-full overflow-hidden"
+                        data-aos="fade-up" data-aos-delay="400">
+                        <div
+                            class="w-20 h-20 rounded-3xl flex items-center justify-center mb-10 bg-brand-blue text-white shadow-xl group-hover:scale-110">
+                            <i data-lucide="clipboard-list" size="36"></i>
+                        </div>
+                        <h3
+                            class="text-2xl font-bold text-brand-blue mb-6 group-hover:text-accent-blue transition-colors">
+                            Laudos Médicos Diversos</h3>
+                        <p class="text-slate-600 text-base mb-10 flex-grow">Elaboração de relatórios e documentos
+                            médicos para diferentes finalidades, com linguagem técnica, objetividade e precisão
+                            documental.</p>
+                        <a href="#contato"
+                            class="inline-flex items-center gap-3 text-brand-orange font-black text-sm tracking-widest uppercase group/btn">Detalhes
+                            <i data-lucide="arrow-right" size="20"></i></a>
+                        <div
+                            class="absolute top-10 right-10 text-8xl font-black text-slate-100 opacity-20 group-hover:text-brand-blue/5">
+                            04</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- HOW IT WORKS -->
+        <section id="como-funciona" class="py-32 bg-brand-cream relative">
+            <div class="max-w-7xl mx-auto px-6">
+                <div class="text-center mb-24" data-aos="fade-up">
+                    <h2 class="text-brand-orange font-bold uppercase tracking-[0.3em] text-sm mb-4">PROCESSO</h2>
+                    <p class="text-4xl md:text-6xl font-black text-brand-blue tracking-tighter">Como garantimos sua
+                        <span class="text-accent-blue italic">tranquilidade</span>
+                    </p>
+                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-16">
+                    <!-- Step 1 -->
+                    <div class="flex flex-col items-center text-center group" data-aos="fade-up" data-aos-delay="100">
+                        <div class="relative mb-10">
+                            <div
+                                class="w-24 h-24 rounded-[32px] bg-white shadow-2xl flex items-center justify-center border border-slate-100 text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-all duration-500">
+                                <i data-lucide="message-square" size="40"></i>
+                            </div>
+                            <div
+                                class="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-brand-orange text-white font-black flex items-center justify-center text-xl border-4 border-white shadow-xl">
+                                1</div>
+                        </div>
+                        <h4
+                            class="text-2xl font-bold text-brand-blue mb-5 px-4 group-hover:text-accent-blue transition-colors">
+                            Pré-avaliação</h4>
+                        <p class="text-slate-500 text-base max-w-[260px]">Orientação inicial pelo WhatsApp sobre
+                            documentos e requisitos.</p>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="flex flex-col items-center text-center group" data-aos="fade-up" data-aos-delay="200">
+                        <div class="relative mb-10">
+                            <div
+                                class="w-24 h-24 rounded-[32px] bg-white shadow-2xl flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-all duration-500">
+                                <i data-lucide="stethoscope" size="40"></i>
+                            </div>
+                            <div
+                                class="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-brand-orange text-white font-black flex items-center justify-center text-xl border-4 border-white">
+                                2</div>
+                        </div>
+                        <h4
+                            class="text-2xl font-bold text-brand-blue mb-5 px-4 group-hover:text-accent-blue transition-colors">
+                            Consulta Médica</h4>
+                        <p class="text-slate-500 text-base max-w-[260px]">Avaliação clínica direcionada às exigências
+                            técnicas de cada processo.</p>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="flex flex-col items-center text-center group" data-aos="fade-up" data-aos-delay="300">
+                        <div class="relative mb-10">
+                            <div
+                                class="w-24 h-24 rounded-[32px] bg-white shadow-2xl flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-all duration-500">
+                                <i data-lucide="file-check" size="40"></i>
+                            </div>
+                            <div
+                                class="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-brand-orange text-white font-black flex items-center justify-center text-xl border-4 border-white">
+                                3</div>
+                        </div>
+                        <h4
+                            class="text-2xl font-bold text-brand-blue mb-5 px-4 group-hover:text-accent-blue transition-colors">
+                            Emissão de Laudos</h4>
+                        <p class="text-slate-500 text-base max-w-[260px]">Documento com validade nacional pronto para
+                            apresentação.</p>
+                    </div>
+                    <!-- Step 4 -->
+                    <div class="flex flex-col items-center text-center group" data-aos="fade-up" data-aos-delay="400">
+                        <div class="relative mb-10">
+                            <div
+                                class="w-24 h-24 rounded-[32px] bg-white shadow-2xl flex items-center justify-center text-brand-blue group-hover:bg-brand-blue group-hover:text-white transition-all duration-500">
+                                <i data-lucide="life-buoy" size="40"></i>
+                            </div>
+                            <div
+                                class="absolute -top-4 -right-4 w-12 h-12 rounded-full bg-brand-orange text-white font-black flex items-center justify-center text-xl border-4 border-white">
+                                4</div>
+                        </div>
+                        <h4
+                            class="text-2xl font-bold text-brand-blue mb-5 px-4 group-hover:text-accent-blue transition-colors">
+                            Suporte</h4>
+                        <p class="text-slate-500 text-base max-w-[260px]">Permanecemos à disposição para quaisquer
+                            dúvidas e esclarecimentos.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- WHY CHOOSE US -->
+        <section id="diferenciais" class="py-32 bg-brand-blue overflow-hidden relative text-white">
+            <div class="absolute top-1/2 right-0 w-[600px] h-[600px] bg-accent-blue/10 rounded-full blur-[120px]"></div>
+            <div class="max-w-7xl mx-auto px-6 relative z-10">
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-24 items-center">
+                    <div>
+                        <h2 class="text-brand-orange font-bold uppercase tracking-[0.3em] text-sm mb-4">Diferenciais
+                        </h2>
+                        <h3 class="text-4xl md:text-6xl font-black leading-tight mb-12">Mais do que um atestado: <br>
+                            <span class="text-accent-blue">rigor técnico e confiabilidade nos laudos.</span>
+                        </h3>
+                        <div class="space-y-10 mt-12">
+                            <div class="flex gap-8 group" data-aos="fade-right">
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-orange transition-all">
+                                    <i data-lucide="gavel" class="text-brand-orange group-hover:text-white"
+                                        size="28"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Adequação ao Processo</h4>
+                                    <p class="text-slate-400">Laudos elaborados conforme as exigências dos órgãos
+                                        oficiais.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-8 group" data-aos="fade-right" data-aos-delay="200">
+                                <div
+                                    class="w-14 h-14 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-orange transition-all">
+                                    <i data-lucide="shield" class="text-brand-orange group-hover:text-white"
+                                        size="28"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-xl font-bold mb-2">Agilidade Certificada</h4>
+                                    <p class="text-slate-400">Entrega rápida sem comprometer o rigor.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="relative" data-aos="zoom-in">
+                        <div class="bg-brand-blue-light border border-white/10 p-12 md:p-20 rounded-[60px] shadow-3xl">
+                            <p class="text-2xl md:text-4xl font-medium italic leading-relaxed">“Nosso objetivo não se
+                                limita à emissão do laudo, mas à garantia de sua aceitação plena.”</p>
+                            <div class="mt-12 flex items-center gap-6">
+                                <div class="w-16 h-1.5 bg-brand-orange rounded-full"></div>
+                                <div class="flex flex-col">
+                                    <span
+                                        class="text-slate-400 font-bold uppercase tracking-[0.2em] text-[10px]">Direção
+                                        Técnica Médica</span>
+                                    <span
+                                        class="text-brand-orange font-black uppercase tracking-[0.2em] text-sm italic">Medicina
+                                        Fortaleza</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION -->
+        <section id="contato" class="py-32 px-6 bg-white relative">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-24 items-start">
+                <div data-aos="fade-right">
+                    <h2 class="text-brand-orange font-bold uppercase tracking-[0.3em] text-sm mb-4">Contato</h2>
+                    <h3 class="text-4xl md:text-6xl font-black text-brand-blue leading-tight mb-8">Pronto para <br>
+                        <span class="text-accent-blue">nosso auxílio?</span>
+                    </h3>
+                    <div class="space-y-8 mt-12">
+                        <div class="flex gap-8 items-start group">
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-slate-100 text-brand-blue flex items-center justify-center shrink-0 border border-slate-200 shadow-sm group-hover:scale-110 transition-transform">
+                                <i data-lucide="phone" size="28"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-blue text-xl leading-none">WhatsApp</h4>
+                                <p class="text-slate-500 font-medium mt-1">(85) 9 9910-8515</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-8 items-start group">
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-slate-100 text-brand-blue flex items-center justify-center shrink-0 border border-slate-200 group-hover:scale-110 transition-transform">
+                                <i data-lucide="map-pin" size="28"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-blue text-xl leading-none">Endereço</h4>
+                                <p class="text-slate-500 font-medium mt-1">Rua Senador Pompeu 1426 - Centro - Fortaleza
+                                    - CE</p>
+                            </div>
+                        </div>
+                        <div class="flex gap-8 items-start group">
+                            <div
+                                class="w-16 h-16 rounded-2xl bg-slate-100 text-brand-blue flex items-center justify-center shrink-0 border border-slate-200 group-hover:scale-110 transition-transform">
+                                <i data-lucide="map" size="28"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-brand-blue text-xl leading-none">Localização</h4>
+                                <p class="text-slate-500 font-medium mt-1">Dentro da Clínica Boghos de Imagem</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div data-aos="fade-left"
+                    class="bg-brand-blue p-12 md:p-16 rounded-[60px] text-white shadow-3xl relative overflow-hidden">
+                    <h3 class="text-3xl font-bold mb-10">Solicite sua avaliação</h3>
+                    <form onsubmit="event.preventDefault(); alert('Mensagem simulada enviada com sucesso!');"
+                        class="space-y-8">
+                        <input type="text" placeholder="Nome Completo"
+                            class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none focus:border-brand-orange text-lg">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                            <input type="tel" placeholder="WhatsApp"
+                                class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none">
+                            <select
+                                class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none text-white/50">
+                                <option value="" class="text-black">Tipo de Laudo</option>
+                                <option class="text-black">DETRAN</option>
+                                <option class="text-black">PCD</option>
+                                <option class="text-black">Prova de Vida</option>
+                                <option class="text-black">Lucidez</option>
+                                <option class="text-black">Outros</option>
+                            </select>
+                        </div>
+                        <textarea rows="4" placeholder="Sua necessidade..."
+                            class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none resize-none"></textarea>
+                        <button
+                            class="w-full bg-brand-orange text-white py-6 rounded-2xl font-black text-xl shadow-xl hover:scale-105 transition-all">Enviar
+                            Solicitação</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- FAQ SECTION -->
+        <section id="faq" class="py-32 bg-brand-blue relative overflow-hidden text-white">
+            <div
+                class="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_20%_20%,rgba(37,99,235,0.05),transparent_50%)]">
+            </div>
+            <div class="max-w-4xl mx-auto px-6 relative z-10">
+                <div class="text-center mb-20" data-aos="fade-up">
+                    <h2 class="text-brand-orange font-bold uppercase tracking-[0.3em] text-sm mb-4">Dúvidas Frequentes
+                    </h2>
+                    <p class="text-4xl md:text-6xl font-black leading-tight tracking-tighter">Esclareça suas <span
+                            class="text-accent-blue italic">principais questões</span></p>
+                </div>
+
+                <div class="space-y-4">
+                    <!-- Item 1 -->
+                    <div class="faq-item bg-brand-blue-light/30 border border-white/5 rounded-3xl overflow-hidden transition-all duration-300 hover:border-white/10"
+                        data-aos="fade-up">
+                        <button class="faq-toggle w-full flex items-center justify-between text-left p-8 group">
+                            <span
+                                class="text-lg md:text-xl font-bold group-hover:text-brand-orange transition-colors pr-8 leading-tight">Meu
+                                carro não possui adaptações, mas eu só posso dirigir veículos automáticos. Minha
+                                deficiência é leve. Posso conduzir normalmente?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-orange group-hover:border-brand-orange transition-all">
+                                <i data-lucide="plus" class="faq-icon transform transition-transform duration-300"
+                                    size="20"></i>
+                            </div>
+                        </button>
+                        <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="px-8 pb-8 text-slate-400 text-lg leading-relaxed border-t border-white/5 pt-6">
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <span>Se, na avaliação pericial, foi constatado que um veículo automático, mesmo
+                                            sem adaptações adicionais, é suficiente para garantir sua condução segura,
+                                            você passa a estar autorizado exclusivamente a dirigir veículos
+                                            automáticos.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 2 -->
+                    <div class="faq-item bg-brand-blue-light/30 border border-white/5 rounded-3xl overflow-hidden transition-all duration-300 hover:border-white/10"
+                        data-aos="fade-up" data-aos-delay="100">
+                        <button class="faq-toggle w-full flex items-center justify-between text-left p-8 group">
+                            <span
+                                class="text-lg md:text-xl font-bold group-hover:text-brand-orange transition-colors pr-8 leading-tight">Tenho
+                                uma deficiência. Posso solicitar um laudo para compra de veículo com isenção?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-orange group-hover:border-brand-orange transition-all">
+                                <i data-lucide="plus" class="faq-icon transform transition-transform duration-300"
+                                    size="20"></i>
+                            </div>
+                        </button>
+                        <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="px-8 pb-8 text-slate-400 text-lg leading-relaxed border-t border-white/5 pt-6">
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <span>Sim. Com CNH válida, compareça à nossa clínica com o laudo do médico
+                                            especialista na sua condição, contendo CID, CRM e RQE.</span>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <span>Se, após avaliação, sua condição se enquadrar nos critérios legais, o
+                                            laudo para fins de isenção será emitido, conforme normas da Receita Federal
+                                            do Brasil e do CONTRAN.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 3 -->
+                    <div class="faq-item bg-brand-blue-light/30 border border-white/5 rounded-3xl overflow-hidden transition-all duration-300 hover:border-white/10"
+                        data-aos="fade-up" data-aos-delay="200">
+                        <button class="faq-toggle w-full flex items-center justify-between text-left p-8 group">
+                            <span
+                                class="text-lg md:text-xl font-bold group-hover:text-brand-orange transition-colors pr-8 leading-tight">Como
+                                é a CNH Especial?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-orange group-hover:border-brand-orange transition-all">
+                                <i data-lucide="plus" class="faq-icon transform transition-transform duration-300"
+                                    size="20"></i>
+                            </div>
+                        </button>
+                        <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="px-8 pb-8 text-slate-400 text-lg leading-relaxed border-t border-white/5 pt-6">
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <span>A chamada “CNH Especial” é a Carteira Nacional de Habilitação concedida a
+                                            pessoas com deficiência física, visual ou auditiva, após avaliação médica e
+                                            psicológica.</span>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <span>Nela, constam códigos de restrição no campo de observações, que indicam a
+                                            existência de deficiência e/ou a necessidade de adaptações veiculares ou
+                                            condições específicas para dirigir, conforme normas do CONTRAN.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 4 -->
+                    <div class="faq-item bg-brand-blue-light/30 border border-white/5 rounded-3xl overflow-hidden transition-all duration-300 hover:border-white/10"
+                        data-aos="fade-up" data-aos-delay="300">
+                        <button class="faq-toggle w-full flex items-center justify-between text-left p-8 group">
+                            <span
+                                class="text-lg md:text-xl font-bold group-hover:text-brand-orange transition-colors pr-8 leading-tight">O
+                                que preciso para pedir um laudo?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-orange group-hover:border-brand-orange transition-all">
+                                <i data-lucide="plus" class="faq-icon transform transition-transform duration-300"
+                                    size="20"></i>
+                            </div>
+                        </button>
+                        <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="px-8 pb-8 text-slate-400 text-lg leading-relaxed border-t border-white/5 pt-6">
+                                <ul class="space-y-4">
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <span>Atestado Médico recente que comprove sua patologia (CID) ou deficiência,
+                                            limitação funcional e identificação do médico especialista (CRM e
+                                            RQE);</span>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <span>Deficiência auditiva: atestado do otorrinolaringologista +
+                                            audiometria;</span>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <span>Deficiência visual: atestado do oftalmologista;</span>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <span>Transtorno do espectro autista (TEA): laudo de neurologista e/ou
+                                            psiquiatra.</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 5 -->
+                    <div class="faq-item bg-brand-blue-light/30 border border-white/5 rounded-3xl overflow-hidden transition-all duration-300 hover:border-white/10"
+                        data-aos="fade-up" data-aos-delay="400">
+                        <button class="faq-toggle w-full flex items-center justify-between text-left p-8 group">
+                            <span
+                                class="text-lg md:text-xl font-bold group-hover:text-brand-orange transition-colors pr-8 leading-tight">Qual
+                                laudo preciso para comprar veículo com isenção?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-orange group-hover:border-brand-orange transition-all">
+                                <i data-lucide="plus" class="faq-icon transform transition-transform duration-300"
+                                    size="20"></i>
+                            </div>
+                        </button>
+                        <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div
+                                class="px-8 pb-8 text-slate-400 text-lg leading-relaxed border-t border-white/5 pt-6 space-y-6">
+                                <div class="flex items-start gap-4">
+                                    <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                    <div>
+                                        <p class="text-white font-bold mb-2">IPI (Federal): Imposto sobre Produtos
+                                            Industrializados.</p>
+                                        <p class="mb-3">Utilizar o laudo da Receita Federal do Brasil.</p>
+                                        <a href="https://www.gov.br/receitafederal/pt-br/centrais-de-conteudo/formularios/impostos/isencao/isencao-pcd-laudo-ipi-deficiencia/view?utm_source"
+                                            target="_blank"
+                                            class="inline-flex items-center gap-3 text-brand-orange font-bold text-sm uppercase tracking-widest hover:text-white transition-colors">
+                                            Laudo oficial para isenção de IPI (PDF)
+                                            <i data-lucide="external-link" size="16"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                    <div>
+                                        <p class="text-white font-bold mb-2">ICMS (Ceará): Imposto sobre Circulação de
+                                            Mercadorias e Serviços.</p>
+                                        <p class="mb-3">Utilizar o requerimento/laudo exigido pela Secretaria da Fazenda
+                                            do Estado do Ceará.</p>
+                                        <a href="https://portalservicos.sefaz.ce.gov.br/servico-geral+solicitar-isencao-para-pessoas-com-deficiencia-pcd+64da4f1e170f5a26dc57544d"
+                                            target="_blank"
+                                            class="inline-flex items-center gap-3 text-brand-orange font-bold text-sm uppercase tracking-widest hover:text-white transition-colors">
+                                            Formulário de isenção de ICMS (SEFAZ-CE)
+                                            <i data-lucide="external-link" size="16"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-4">
+                                    <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                    <div>
+                                        <p class="text-white font-bold mb-2">IPVA (Ceará): Imposto sobre a Propriedade
+                                            de Veículos Automotores.</p>
+                                        <p class="mb-3">Laudo Médico Pericial + formulário da SEFAZ-CE.</p>
+                                        <a href="https://portalservicos.sefaz.ce.gov.br/tema-geral+ipva+isencao-dispensa-nao-incidencia-e-anistia-de-ipva+solicitar-isencao-de-ipva-para-pessoas-com-deficiencia-pcd+64da4ef8170f5a26dc564c43"
+                                            target="_blank"
+                                            class="inline-flex items-center gap-3 text-brand-orange font-bold text-sm uppercase tracking-widest hover:text-white transition-colors">
+                                            Pedido de isenção de IPVA (SEFAZ-CE)
+                                            <i data-lucide="external-link" size="16"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 6 -->
+                    <div class="faq-item bg-brand-blue-light/30 border border-white/5 rounded-3xl overflow-hidden transition-all duration-300 hover:border-white/10"
+                        data-aos="fade-up" data-aos-delay="500">
+                        <button class="faq-toggle w-full flex items-center justify-between text-left p-8 group">
+                            <span
+                                class="text-lg md:text-xl font-bold group-hover:text-brand-orange transition-colors pr-8 leading-tight">Quais
+                                deficiências se enquadram nos benefícios?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-orange group-hover:border-brand-orange transition-all">
+                                <i data-lucide="plus" class="faq-icon transform transition-transform duration-300"
+                                    size="20"></i>
+                            </div>
+                        </button>
+                        <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="px-8 pb-8 text-slate-400 text-lg leading-relaxed border-t border-white/5 pt-6">
+                                <ul class="space-y-6">
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <div>
+                                            <p class="text-white font-bold mb-1">Deficiência física:</p>
+                                            <p>Paraplegia, paraparesia, monoplegia, monoparesia, tetraplegia,
+                                                tetraparesia, triplegia, triparesia, hemiplegia, hemiparesia, amputação
+                                                ou ausência de membro, paralisia cerebral, deformidades congênitas ou
+                                                adquiridas.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <div>
+                                            <p class="text-white font-bold mb-1">Deficiência visual:</p>
+                                            <p>Cegueira unilateral e/ou baixa visão.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <div>
+                                            <p class="text-white font-bold mb-1">Deficiência auditiva:</p>
+                                            <p>Perda bilateral parcial ou total da audição.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <div>
+                                            <p class="text-white font-bold mb-1">Deficiência mental/intelectual:</p>
+                                            <p>Deficiência intelectual e transtorno do espectro autista (TEA).</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 7 -->
+                    <div class="faq-item bg-brand-blue-light/30 border border-white/5 rounded-3xl overflow-hidden transition-all duration-300 hover:border-white/10"
+                        data-aos="fade-up" data-aos-delay="600">
+                        <button class="faq-toggle w-full flex items-center justify-between text-left p-8 group">
+                            <span
+                                class="text-lg md:text-xl font-bold group-hover:text-brand-orange transition-colors pr-8 leading-tight">Não
+                                tenho CNH e sou deficiente. Tenho direito aos benefícios?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-orange group-hover:border-brand-orange transition-all">
+                                <i data-lucide="plus" class="faq-icon transform transition-transform duration-300"
+                                    size="20"></i>
+                            </div>
+                        </button>
+                        <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="px-8 pb-8 text-slate-400 text-lg leading-relaxed border-t border-white/5 pt-6">
+                                <ul class="space-y-6">
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <div>
+                                            <p class="text-white font-bold mb-1">Quem se enquadra:</p>
+                                            <p>Deficiência mental/intelectual, paralisia cerebral, transtorno do
+                                                espectro autista (TEA) ou outras condições que impeçam a condução de
+                                                veículo.</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <div>
+                                            <p class="text-white font-bold mb-1">Como proceder:</p>
+                                            <p>Procure seu médico para emissão do atestado e, posteriormente, compareça
+                                                à nossa unidade para a realização da avaliação e emissão do laudo
+                                                específico para seu benefício.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Item 8 -->
+                    <div class="faq-item bg-brand-blue-light/30 border border-white/5 rounded-3xl overflow-hidden transition-all duration-300 hover:border-white/10"
+                        data-aos="fade-up" data-aos-delay="700">
+                        <button class="faq-toggle w-full flex items-center justify-between text-left p-8 group">
+                            <span
+                                class="text-lg md:text-xl font-bold group-hover:text-brand-orange transition-colors pr-8 leading-tight">Qual
+                                órgão faz a avaliação do laudo?</span>
+                            <div
+                                class="w-10 h-10 rounded-full bg-white/5 border border-white/10 flex items-center justify-center shrink-0 group-hover:bg-brand-orange group-hover:border-brand-orange transition-all">
+                                <i data-lucide="plus" class="faq-icon transform transition-transform duration-300"
+                                    size="20"></i>
+                            </div>
+                        </button>
+                        <div class="faq-content overflow-hidden max-h-0 transition-all duration-500 ease-in-out">
+                            <div class="px-8 pb-8 text-slate-400 text-lg leading-relaxed border-t border-white/5 pt-6">
+                                <ul class="space-y-6">
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <div>
+                                            <p class="text-white font-bold mb-1">Receita Federal:</p>
+                                            <p>Responsável pela análise do laudo pericial para isenção do IPI.
+                                                (Realize seu laudo em nossa clínica).</p>
+                                        </div>
+                                    </li>
+                                    <li class="flex items-start gap-4">
+                                        <div class="w-2 h-2 rounded-full bg-brand-orange mt-2.5 shrink-0"></div>
+                                        <div>
+                                            <p class="text-white font-bold mb-1">SEFAZ (Secretaria da Fazenda):</p>
+                                            <p>Responsável pela análise do laudo pericial para isenção do ICMS e do
+                                                IPVA.</p>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- FINAL CTA -->
+        <section class="py-32 bg-brand-cream px-6">
+            <div class="max-w-6xl mx-auto bg-brand-blue rounded-[60px] p-16 md:p-24 text-center text-white relative overflow-hidden shadow-3xl"
+                data-aos="zoom-in">
+                <div class="absolute top-0 right-0 w-80 h-80 bg-white/5 rounded-full -translate-y-40 translate-x-40">
+                </div>
+                <div class="relative z-10 space-y-10 max-w-3xl mx-auto">
+                    <h2 class="text-4xl md:text-7xl font-black leading-tight tracking-tighter">Precisa de urgência?</h2>
+                    <p class="text-slate-300 text-lg md:text-xl font-medium">Fale agora com um especialista e garanta
+                        seus direitos hoje.</p>
+                    <a href="https://wa.me/5585999108515"
+                        class="bg-brand-orange text-white px-12 py-7 rounded-2xl font-black text-2xl inline-flex items-center gap-5 hover:scale-110 transition-all shadow-2xl">
+                        <i data-lucide="phone-call" size="32"></i> Agendar WhatsApp
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-brand-blue text-white py-20 border-t border-white/5 text-center">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex flex-col items-center gap-8">
+                <div class="flex flex-col mb-4">
+                    <span class="text-2xl font-black uppercase tracking-tight">Medicina</span>
+                    <span
+                        class="text-xl font-bold tracking-[0.3em] text-brand-orange uppercase leading-none">Fortaleza</span>
+                </div>
+                <p class="text-slate-500 max-w-md italic font-medium">Laudos médicos elaborados com precisão técnica e
+                    alinhamento às exigências de cada processo, contribuindo para a adequada aceitação em cartórios,
+                    DETRAN e órgãos competentes.</p>
+                <div class="flex gap-4">
+                    <a href="https://instagram.com/medicinafortaleza" target="_blank"
+                        class="w-16 h-16 bg-brand-blue-light border-2 border-white rounded-2xl flex items-center justify-center hover:bg-brand-orange hover:border-brand-orange transition-all duration-300 group shadow-2xl text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="36" height="36" viewBox="0 0 24 24" fill="none"
+                            stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"
+                            class="group-hover:scale-110 transition-transform">
+                            <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
+                            <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
+                            <line x1="17.5" x2="17.51" y1="6.5" y2="6.5"></line>
+                        </svg>
+                    </a>
+                </div>
+                <div class="text-slate-600 text-[10px] uppercase font-bold tracking-widest mt-10">
+                    © 2026 Medicina Fortaleza. Direitos reservados.
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- WhatsApp Floating Button -->
+    <a href="https://wa.me/5585999108515" target="_blank"
+        class="fixed bottom-10 right-10 z-[100] bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:scale-110 active:scale-95 transition-all animate-bounce">
+        <i data-lucide="message-circle" size="36"></i>
+    </a>
+
+    <!-- SCRIPTS -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Init Lucide Icons
+        lucide.createIcons();
+
+        // Init AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            offset: 100
+        });
+
+        // Navbar Scroll Logic
+        const navbar = document.getElementById('navbar');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                navbar.classList.add('glass', 'py-3', 'shadow-2xl', 'border-b', 'border-white/5');
+                navbar.classList.remove('py-5');
+            } else {
+                navbar.classList.remove('glass', 'py-3', 'shadow-2xl', 'border-b', 'border-white/5');
+                navbar.classList.add('py-5');
+            }
+        });
+
+        // Mobile Menu Logic
+        const menuToggle = document.getElementById('menu-toggle');
+        const menuClose = document.getElementById('menu-close');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+
+        const openMenu = () => {
+            mobileMenu.classList.remove('opacity-0', 'pointer-events-none', 'translate-x-full');
+            document.body.classList.add('overflow-hidden');
+        };
+
+        const closeMenu = () => {
+            mobileMenu.classList.add('opacity-0', 'pointer-events-none', 'translate-x-full');
+            document.body.classList.remove('overflow-hidden');
+        };
+
+        menuToggle.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        mobileLinks.forEach(link => link.addEventListener('click', closeMenu));
+
+        // FAQ Accordion Logic
+        const faqToggles = document.querySelectorAll('.faq-toggle');
+        faqToggles.forEach(toggle => {
+            toggle.addEventListener('click', () => {
+                const item = toggle.parentElement;
+                const content = item.querySelector('.faq-content');
+                const icon = item.querySelector('.faq-icon');
+
+                // Close other items
+                document.querySelectorAll('.faq-item').forEach(otherItem => {
+                    if (otherItem !== item) {
+                        otherItem.querySelector('.faq-content').style.maxHeight = null;
+                        otherItem.querySelector('.faq-icon').style.transform = 'rotate(0deg)';
+                    }
+                });
+
+                if (content.style.maxHeight) {
+                    content.style.maxHeight = null;
+                    icon.style.transform = 'rotate(0deg)';
+                } else {
+                    content.style.maxHeight = content.scrollHeight + "px";
+                    icon.style.transform = 'rotate(45deg)';
+                }
+            });
+        });
+    </script>
+</body>
+
+</html>
