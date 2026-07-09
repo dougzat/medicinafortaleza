@@ -194,7 +194,7 @@
         <a
           href="https://wa.me/5585999108515"
           class="bg-brand-orange text-white px-8 py-6 rounded-2xl font-black text-xl mt-8 shadow-2xl"
-          >WhatsApp</a
+          >Agendar</a
         >
       </div>
 
@@ -245,7 +245,7 @@
                   class="px-10 py-6 bg-brand-orange text-white rounded-2xl font-black text-xl shadow-2xl hover:scale-105 hover:bg-brand-bronze transition-all flex items-center gap-4"
                 >
                   <i data-lucide="phone" class="w-7 h-7"></i>
-                  Agendar Agora
+                  Agendar agora!
                 </a>
                 <div
                   class="flex flex-col justify-center border-l-2 border-white/10 pl-6 text-white text-left"
@@ -837,176 +837,157 @@
             >
               <h3 class="text-3xl font-bold mb-10">Solicite sua avaliação</h3>
               <form
-                onsubmit="
-                  event.preventDefault();
-                  alert('Mensagem simulada enviada com sucesso!');
-                "
-                class="space-y-8"
-              >
-                <input
-                  type="text"
-                  placeholder="Nome Completo"
-                  class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none focus:border-brand-orange text-lg"
-                />
-                <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
-                  <input
-                    type="tel"
-                    placeholder="WhatsApp"
-                    class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none"
-                  />
-                  <div class="relative w-full text-white font-medium">
-                    <button
-                      type="button"
-                      id="select-button"
-                      class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none text-white/50 flex justify-between items-center text-left transition-colors duration-300 focus:border-white"
-                    >
-                      <span id="selected-value">Tipo de Laudo</span>
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        class="w-5 h-5 opacity-50 transition-transform duration-300"
-                        id="select-arrow"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2"
-                      >
-                        <polyline points="6 9 12 15 18 9"></polyline>
-                      </svg>
-                    </button>
+  onsubmit="enviarParaWhatsApp(event)"
+  class="space-y-8"
+>
+  <!-- Adicionado id="nome" -->
+  <input
+    id="nome"
+    type="text"
+    placeholder="Nome Completo"
+    required
+    class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none focus:border-brand-orange text-lg"
+  />
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+    <!-- Adicionado id="whatsapp-cliente" -->
+    <input
+      id="whatsapp-cliente"
+      type="tel"
+      placeholder="Número"
+      required
+      class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none"
+    />
+    <div class="relative w-full text-white font-medium">
+      <button
+        type="button"
+        id="select-button"
+        class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none text-white/50 flex justify-between items-center text-left transition-colors duration-300 focus:border-white"
+      >
+        <span id="selected-value">Tipo de Laudo</span>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          class="w-5 h-5 opacity-50 transition-transform duration-300"
+          id="select-arrow"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+        >
+          <polyline points="6 9 12 15 18 9"></polyline>
+        </svg>
+      </button>
 
-                    <ul
-                      id="select-dropdown"
-                      class="absolute left-0 top-[102%] w-full bg-white text-black rounded-xl shadow-2xl mt-1 overflow-hidden z-50 pointer-events-none opacity-0 scale-95 origin-top transition-all duration-200 ease-out"
-                    >
-                      <li
-                        class="px-5 py-3 hover:bg-brand-blue-light/10 hover:text-brand-blue cursor-pointer transition-colors"
-                        data-value="DETRAN"
-                      >
-                        DETRAN
-                      </li>
-                      <li
-                        class="px-5 py-3 hover:bg-brand-blue-light/10 hover:text-brand-blue cursor-pointer transition-colors"
-                        data-value="PCD"
-                      >
-                        PCD
-                      </li>
-                      <li
-                        class="px-5 py-3 hover:bg-brand-blue-light/10 hover:text-brand-blue cursor-pointer transition-colors"
-                        data-value="Prova de Vida"
-                      >
-                        Prova de Vida
-                      </li>
-                      <li
-                        class="px-5 py-3 hover:bg-brand-blue-light/10 hover:text-brand-blue cursor-pointer transition-colors"
-                        data-value="Lucidez"
-                      >
-                        Lucidez
-                      </li>
-                      <li
-                        class="px-5 py-3 hover:bg-brand-blue-light/10 hover:text-brand-blue cursor-pointer transition-colors"
-                        data-value="Outros"
-                      >
-                        Outros
-                      </li>
-                    </ul>
+      <ul
+        id="select-dropdown"
+        class="absolute left-0 top-[102%] w-full bg-white text-black rounded-xl shadow-2xl mt-1 overflow-hidden z-50 pointer-events-none opacity-0 scale-95 origin-top transition-all duration-200 ease-out"
+      >
+        <li class="px-5 py-3 hover:bg-brand-blue-light/10 hover:text-brand-blue cursor-pointer transition-colors" data-value="DETRAN">DETRAN</li>
+        <li class="px-5 py-3 hover:bg-brand-blue-light/10 hover:text-brand-blue cursor-pointer transition-colors" data-value="PCD">PCD</li>
+        <li class="px-5 py-3 hover:bg-brand-blue-light/10 hover:text-brand-blue cursor-pointer transition-colors" data-value="Prova de Vida">Prova de Vida</li>
+        <li class="px-5 py-3 hover:bg-brand-blue-light/10 hover:text-brand-blue cursor-pointer transition-colors" data-value="Lucidez">Lucidez</li>
+        <li class="px-5 py-3 hover:bg-brand-blue-light/10 hover:text-brand-blue cursor-pointer transition-colors" data-value="Outros">Outros</li>
+      </ul>
 
-                    <input
-                      type="hidden"
-                      name="tipo_laudo"
-                      id="hidden-select-input"
-                      value=""
-                    />
-                  </div>
+      <input
+        type="hidden"
+        name="tipo_laudo"
+        id="hidden-select-input"
+        value=""
+      />
+    </div>
 
-                  <script>
-                    const selectButton =
-                      document.getElementById("select-button");
-                    const selectDropdown =
-                      document.getElementById("select-dropdown");
-                    const selectArrow = document.getElementById("select-arrow");
-                    const selectedValue =
-                      document.getElementById("selected-value");
-                    const hiddenInput = document.getElementById(
-                      "hidden-select-input",
-                    );
-                    const options = selectDropdown.querySelectorAll("li");
+    <script>
+      const selectButton = document.getElementById("select-button");
+      const selectDropdown = document.getElementById("select-dropdown");
+      const selectArrow = document.getElementById("select-arrow");
+      const selectedValue = document.getElementById("selected-value");
+      const hiddenInput = document.getElementById("hidden-select-input");
+      const options = selectDropdown.querySelectorAll("li");
 
-                    // Abre e fecha o menu com animação mudando classes do Tailwind
-                    selectButton.addEventListener("click", (e) => {
-                      e.stopPropagation();
-                      const isOpen =
-                        selectDropdown.classList.contains("opacity-100");
+      selectButton.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = selectDropdown.classList.contains("opacity-100");
+        if (isOpen) { closeDropdown(); } else { openDropdown(); }
+      });
 
-                      if (isOpen) {
-                        closeDropdown();
-                      } else {
-                        // Aplica as classes de animação de entrada (Fade + Scale)
-                        selectDropdown.classList.remove(
-                          "opacity-0",
-                          "scale-95",
-                          "pointer-events-none",
-                        );
-                        selectDropdown.classList.add(
-                          "opacity-100",
-                          "scale-100",
-                          "pointer-events-auto",
-                        );
-                        selectArrow.classList.add("rotate-180"); // Gira a setinha
-                      }
-                    });
+      function openDropdown() {
+        selectDropdown.classList.remove("opacity-0", "scale-95", "pointer-events-none");
+        selectDropdown.classList.add("opacity-100", "scale-100", "pointer-events-auto");
+        selectArrow.classList.add("rotate-180");
+      }
 
-                    // Função para fechar o menu com suavidade
-                    function closeDropdown() {
-                      selectDropdown.classList.remove(
-                        "opacity-100",
-                        "scale-100",
-                        "pointer-events-auto",
-                      );
-                      selectDropdown.classList.add(
-                        "opacity-0",
-                        "scale-95",
-                        "pointer-events-none",
-                      );
-                      selectArrow.classList.remove("rotate-180");
-                    }
+      function closeDropdown() {
+        selectDropdown.classList.remove("opacity-100", "scale-100", "pointer-events-auto");
+        selectDropdown.classList.add("opacity-0", "scale-95", "pointer-events-none");
+        selectArrow.classList.remove("rotate-180");
+      }
 
-                    // Gerencia o clique em uma opção
-                    options.forEach((option) => {
-                      option.addEventListener("click", () => {
-                        const val = option.getAttribute("data-value");
-                        const txt = option.innerText;
+      options.forEach((option) => {
+        option.addEventListener("click", () => {
+          const val = option.getAttribute("data-value");
+          const txt = option.innerText;
 
-                        selectedValue.innerText = txt;
-                        hiddenInput.value = val; // Grava o valor no input oculto para o form funcionar
+          selectedValue.innerText = txt;
+          hiddenInput.value = val;
 
-                        // Se escolheu uma opção válida, muda a cor do texto para destacar do placeholder
-                        if (val !== "") {
-                          selectButton.classList.remove("text-white/50");
-                          selectButton.classList.add("text-white");
-                        } else {
-                          selectButton.classList.remove("text-white");
-                          selectButton.classList.add("text-white/50");
-                        }
+          if (val !== "") {
+            selectButton.classList.remove("text-white/50");
+            selectButton.classList.add("text-white");
+          } else {
+            selectButton.classList.remove("text-white");
+            selectButton.classList.add("text-white/50");
+          }
+          closeDropdown();
+        });
+      });
 
-                        closeDropdown();
-                      });
-                    });
+      document.addEventListener("click", closeDropdown);
 
-                    // Fecha o dropdown se o usuário clicar em qualquer outro lugar da tela
-                    document.addEventListener("click", closeDropdown);
-                  </script>
-                </div>
-                <textarea
-                  rows="4"
-                  placeholder="Sua necessidade..."
-                  class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none resize-none"
-                ></textarea>
-                <button
-                  class="w-full bg-brand-orange text-white py-6 rounded-2xl font-black text-xl shadow-xl hover:scale-105 transition-all"
-                >
-                  Enviar Solicitação
-                </button>
-              </form>
+      // NOVA FUNÇÃO: Captura os dados e envia formatado para o WhatsApp
+      function enviarParaWhatsApp(event) {
+        event.preventDefault();
+
+        // INSIRA SEU NÚMERO AQUI (com código do país e DDD - Apenas números)
+        const numeroDestino = "5585999108515"; 
+
+        // Captura os valores dos campos
+        const nome = document.getElementById("nome").value;
+        const whatsappCliente = document.getElementById("whatsapp-cliente").value;
+        const tipoLaudo = document.getElementById("hidden-select-input").value || "Não informado";
+        const necessidade = document.getElementById("necessidade").value;
+
+        // Monta a mensagem organizada com quebras de linha e negrito (*)
+        const mensagem = `*Nova Solicitação de Atendimento* 📋\n\n` +
+                         `*Nome:* ${nome}\n` +
+                         `*Número:* ${whatsappCliente}\n` +
+                         `*Tipo de Laudo:* ${tipoLaudo}\n` +
+                         `*Necessidade:* ${necessidade}`;
+
+        // Codifica o texto para formato de URL
+        const mensagemCodificada = encodeURIComponent(mensagem);
+
+        // Cria o link final da API do WhatsApp
+        const urlWhatsApp = `https://api.whatsapp.com/send?phone=${numeroDestino}&text=${mensagemCodificada}`;
+
+        // Abre a conversa em uma nova aba
+        window.open(urlWhatsApp, "_blank");
+      }
+    </script>
+  </div>
+  <!-- Adicionado id="necessidade" -->
+  <textarea
+    id="necessidade"
+    rows="4"
+    placeholder="Sua necessidade..."
+    required
+    class="w-full bg-transparent border-b-2 border-white/20 py-4 outline-none resize-none"
+  ></textarea>
+  <button
+    class="w-full bg-brand-orange text-white py-6 rounded-2xl font-black text-xl shadow-xl hover:scale-105 transition-all"
+  >
+    Enviar
+  </button>
+</form>
             </div>
           </div>
         </section>
@@ -1713,7 +1694,7 @@
                 href="https://wa.me/5585999108515"
                 class="bg-brand-orange text-white px-12 py-7 rounded-2xl font-black text-2xl inline-flex items-center gap-5 hover:scale-110 transition-all shadow-2xl"
               >
-                <i data-lucide="phone-call" size="32"></i> Agendar WhatsApp
+                <i data-lucide="phone-call" size="32"></i> Fale conosco!
               </a>
             </div>
           </div>
@@ -1728,11 +1709,12 @@
         <div class="max-w-7xl mx-auto px-6">
           <div class="flex flex-col items-center gap-6">
             <div class="mb-2">
-              <img
+              <a href="#inicio" class="flex flex-col">
+                <img
                 src="./logos/img-logo-2.svg"
                 alt="Clínica especializada em laudos médicos e perícias técnicas em Fortaleza."
                 class="h-32 w-auto"
-              />
+              /></a>
             </div>
 
             <p class="text-slate-500 max-w-md italic font-medium">
